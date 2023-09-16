@@ -5,14 +5,18 @@
 }
 
 body{
-    background: #efefef;
+    
+    background-image: url(bg.jpg);
+    background-size: cover;
+    background-position: center;
+    
 }
 
 nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1876f2;
+    background-color: #f4dcdc;
     padding: 5px 5%;
 }
 
@@ -151,6 +155,7 @@ nav{
 
 .user-profile small{
     font-size: 12px;
+    color: #626262
 }
 
 .post-input-container{
@@ -223,7 +228,7 @@ nav{
 }
 
 .profile-intro{
-    background: #fff;
+    background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 4px;
@@ -342,7 +347,6 @@ nav{
     border: 1px solid #e5e5e5;
     border-radius: 20px;
     padding: 8px;
-    
     font-weight: bold;
     background-color: #f3f3f3;
     margin: 4px ;
@@ -385,4 +389,100 @@ nav{
     width: 100%;
     height: 90%;
     cursor: pointer;
+}
+
+#checkbox{
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    appearance: none;
+    -webkit-appearance : none;
+    -moz-appearance : none;
+    -o-appearance : none;
+    width: 80px;
+    height: 40px;
+    background: black;
+    border-radius: 22px;
+    cursor: pointer;
+    outline: none;
+}
+
+#checkbox::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 35px;
+    background-color:white;
+    border-radius: 35px;
+    top: 2px;
+    left: 2px;
+    cursor: pointer;
+    transition: .3s linear;
+}
+
+#checkbox:checked::before{
+    left: 40px;
+}
+
+#checkbox:checked{
+    background: #242424;
+    
+
+}
+
+.container{
+    transition: .4s ease;
+}
+
+#checkbox:checked + .container{
+    background-color: #000;
+    
+    color: white;
+}
+
+#checkbox:checked + .container .profile-container .profile-details {
+    background: #242424;
+    color: white;
+}
+
+#checkbox:checked + .container .profile-info .info-col .profile-intro {
+    background: #242424;
+    color: white;
+}
+
+#checkbox:checked + .container .write-post-container {
+    background: #242424;
+    color: white;
+}
+
+#checkbox:checked + .container .post-container {
+    background: #242424;
+    color: white;
+}
+
+.profile-intro ul li a{
+    text-decoration: none;
+    color: blue;
+}
+
+.nav-left p{
+    position: fixed;
+    display: inline-flex;
+    margin-left: 74%;
+    margin-top: 0.5%;
+}
+
+#checkbox:checked + .container .profile-info .all-photo {
+    background: #242424;
+    color: white;
+}
+
+#checkbox:checked + .container .profile-info .profile-intro {
+    background: #242424;
+    color: white;
+}
+
+#dmode{
+    font-size: 15px;
+    margin-left: 94.5%;
 }
