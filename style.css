@@ -483,11 +483,12 @@ nav{
 }
 
 #checkbox:checked + .container .profile-info .profile-intro ul li a {
-    
     color: white;
 }
 
 #dmode{
     font-size: 15px;
     margin-left: 94.5%;
+    position: fixed;
 }
+
