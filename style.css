@@ -22,7 +22,9 @@ nav{
 
 .logo{
     width: 160px;
-    margin-right: 45px;
+    margin-left: 50%;
+    padding-top: 30px;
+    
 }
 
 .profile-container{
@@ -490,5 +492,19 @@ nav{
     font-size: 15px;
     margin-left: 94.5%;
     position: fixed;
+    margin-top: -1%;
 }
 
+#logologo{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#checkbox:checked + .container .profile-container .write-post-container .user-profile p {
+    color: rgb(196, 187, 187);
+}
+
+#checkbox:checked + .container .profile-container .post-row .user-profile p {
+    color: rgb(196, 187, 187);
+}
