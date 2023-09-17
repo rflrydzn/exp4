@@ -72,7 +72,7 @@ nav{
 }
 
 .pd-right button{
-    background: #1876f2;
+    background: #b671b7;
     border: 0;
     outline: 0;
     padding: 6px 10px;
@@ -479,6 +479,11 @@ nav{
 
 #checkbox:checked + .container .profile-info .profile-intro {
     background: #242424;
+    color: white;
+}
+
+#checkbox:checked + .container .profile-info .profile-intro ul li a {
+    
     color: white;
 }
 
