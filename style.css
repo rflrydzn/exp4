@@ -1,3 +1,4 @@
+/* MAIN */
 *{
     margin: 0;
     padding: 0;
@@ -12,21 +13,16 @@ body{
     
 }
 
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f4dcdc;
-    padding: 5px 5%;
-}
-
 .logo{
     width: 160px;
     margin-left: 50%;
     padding-top: 30px;
-    
 }
 
+
+
+
+/* MY PROFILE */
 .profile-container{
     padding: 20px 15%;
     color: #626262;
@@ -84,10 +80,7 @@ nav{
     border-radius: 3px;
     margin-left: 10px;
     cursor: pointer;
-  
-    
 }
-
 
 .pd-right button img{
     height: 15px;
@@ -114,22 +107,16 @@ nav{
     width: 20px;
 }
 
-.profile-info{
-    display: flex;
-    align-self: flex-start;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
+/* LAYOUT */
 .info-col{
     flex-basis: 33%;
 }
 
 .post-col{
-    flex-basis: 65%;
-    
+    flex-basis: 65%;   
 }
 
+/* WRITE POST */
 .write-post-container{
     
     background: #fff;
@@ -193,6 +180,7 @@ nav{
     margin-right: 10px;
 }
 
+/* TIMELINE POSTS */
 .post-container{
     
     background-color: #fff;
@@ -229,11 +217,24 @@ nav{
     margin-bottom: 5px;
 }
 
+/* LEFT SIDE DIV LAYOUT */
+.profile-info{
+    display: flex;
+    align-self: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
 .profile-intro{
     background-color: #fff;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 4px;
+}
+
+.profile-intro ul li a{
+    text-decoration: none;
+    color: blue;
 }
 
 .profile-intro h3{
@@ -266,18 +267,7 @@ nav{
     margin-right: 10px;
 }
 
-.title-box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.title-box a{
-    text-decoration: none;
-    color: #1876f2;
-    font-size: 14px;
-}
-
+/* PHOTOS */
 .photo-box{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -294,6 +284,19 @@ nav{
     font-size: 14px;
 }
 
+.title-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-box a{
+    text-decoration: none;
+    color: #1876f2;
+    font-size: 14px;
+}
+
+/* FRIENDS */
 .friends-box{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -323,6 +326,7 @@ nav{
     justify-content: space-between;   
 }
 
+/* ACTIVITY ICONS (LIKE, COMMENT, SHARE) */
 .activity-icons div img{
     width: 18px;
     margin-right: 10px;
@@ -334,11 +338,11 @@ nav{
     margin-right: 30px;
 }
 
+/* HOBBIES BUTTON STYLE */
 .hobbies button{
     border: 1px solid #e5e5e5;
     border-radius: 20px;
     padding: 8px;
-    
     font-weight: bold;
     background-color: #fff;
     margin: 4px ;
@@ -355,10 +359,7 @@ nav{
     align-items: center;
 }
 
-
-
-
-
+/* ALL PHOTOS */
 .all-photo{
     background: #fff;
     padding: 20px;
@@ -378,8 +379,7 @@ nav{
     cursor: pointer;
 }
 
-
-
+/* ALL FRIENDS */
 .friends-friends-box{
     display: grid;
     grid-template-columns: repeat(6, auto);
@@ -393,6 +393,7 @@ nav{
     cursor: pointer;
 }
 
+/* DARK MODE SWITCH STYLE */
 #checkbox{
     position: fixed;
     top: 5px;
@@ -428,17 +429,22 @@ nav{
 
 #checkbox:checked{
     background: #242424;
-    
-
 }
 
+#dmode{
+    font-size: 15px;
+    margin-left: 94.5%;
+    position: fixed;
+    margin-top: -1%;
+}
+
+/* DARK MODE EFFECT */
 .container{
     transition: .4s ease;
 }
 
 #checkbox:checked + .container{
     background-color: #000;
-    
     color: white;
 }
 
@@ -462,18 +468,6 @@ nav{
     color: white;
 }
 
-.profile-intro ul li a{
-    text-decoration: none;
-    color: blue;
-}
-
-.nav-left p{
-    position: fixed;
-    display: inline-flex;
-    margin-left: 74%;
-    margin-top: 0.5%;
-}
-
 #checkbox:checked + .container .profile-info .all-photo {
     background: #242424;
     color: white;
@@ -488,19 +482,6 @@ nav{
     color: white;
 }
 
-#dmode{
-    font-size: 15px;
-    margin-left: 94.5%;
-    position: fixed;
-    margin-top: -1%;
-}
-
-#logologo{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
 #checkbox:checked + .container .profile-container .write-post-container .user-profile p {
     color: rgb(196, 187, 187);
 }
@@ -508,3 +489,5 @@ nav{
 #checkbox:checked + .container .profile-container .post-row .user-profile p {
     color: rgb(196, 187, 187);
 }
+
+
