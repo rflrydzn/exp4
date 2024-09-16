@@ -1,298 +1,189 @@
-<html>
-    <head>
-        <title>About Me</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify-like Audio Player</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ececec; /* Light gray background for the whole page */
+        }
 
-    <body>
-        <input type="checkbox" id="checkbox"> <!-- dark mode switch -->
-        <div class="container">
-                <a href="#"><img src="logo.png" class="logo"></a> <!-- logo -->
-                <p id="dmode">dark mode</p>
-                  
-<!--------------------------------------------------------------- MY PROFILE --------------------------------------------------------------->
+        .audio-card {
+            width: 300px;
+            background-color: #b58676; /* Background color for the player card */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: white;
+            position: relative;
+            font-family: 'Arial', sans-serif;
+        }
 
-        <div class="profile-container">
-            <img src="coverr.png" class="cover-img">
-            <div class="profile-details">
-                <div class="pd-left">
-                    <div class="pd-row">
-                        <img src="profile.jpg" class="pd-image">
-                        <div>
-                            <h3>Rafael Roy Dizon</h3>
-                            <p>16 Friends - 3 mutual</p>
-                            <img src="enrico.jpg">
-                            <img src="gian.jpg">
-                            <img src="russel.jpg">
-                        </div>
-                    </div>
-                </div>
-                <div class="pd-right">
-                    <button type="button"><img src="add-friends.png"><a href="https://www.facebook.com/rafaeIdizon/">Friend</a></button>
-                    <button type="button"><img src="message.png"><a href="https://www.messenger.com/t/100003654887672">Message</a></button>                                                        
-                </div>
-            </div>
+        .audio-card img.cover {
+            width: 100%;
+            border-radius: 12px;
+            height: auto;
+        }
 
-<!--------------------------------------------------------------- LEFT SIDE DIV (INFOS ABOUT MYSELF) --------------------------------------------------------------->
+        .spotify-logo {
+            position: absolute;
+            top: -15px; /* Moves the Spotify logo outside the cover */
+            right: 15px;
+            width: 25px;
+            height: 25px;
+        }
 
-<!------- INTRO ------->
-            <div class="profile-info">
-                <div class="info-col">
-                    <div class="profile-intro">
-                        <h3>Intro</h3>
-                        <p class="intro-text">"Kung saan ka masaya, dun ka happy" - Albert Nicolas</p>
-                        <hr>
-                        <ul>
-                            <li><img src="profile-study.png">Student at Holy Angel Unviersity</li>
-                            <li><img src="profile-comp.png">Studying Computer Engineering</li>
-                            <li><img src="profile-home.png">Lives in San Fernando, Pampanga</li>
-                            <li><img src="profile-age.png">20 years old</li>
-                            <li><img src="profile-birthday.png">November 30, 2002</li>
-                        </ul>
-                    </div>
+        .audio-card h4 {
+            font-size: 18px;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
 
- <!------- HOBBIES ------->                   
-                    <div class="profile-intro">
-                        <h3>Hobbies</h3>
-                        <hr>
-                        <div class="hobbies">
-                            <button type="button">📚 Studying</button>
-                            <button type="button">🍕 Eating</button>
-                            <button type="button">🎥 Watching Movies</button>
-                            <button type="button">🎮 Video Games</button>
-                            <button type="button">🎧 Listening to Music</button>
-                            <button type="button">📖 Reading</button>
-                            <button type="button">🚲 Biking</button>
-                            <button type="button">📱 Social Media</button>
-                        </div>
-                    </div>
+        .audio-card p {
+            font-size: 14px;
+            color: #f1f1f1;
+        }
 
-<!------- FACTS ABOUT ME ------->
-                    <div class="profile-intro">
-                        <h3>Facts about me</h3>
-                        <hr>
-                        <ul>
-                            <li>I'm handsome 😎</li>
-                            <li>I have an irrational fear of spiders, which can send me into a panic mode when I encounter one. 🕷️</li>
-                            <li>One of my lifelong dreams is to possess the superpower of seeing into the future, a gift I often fantasize about harnessing. 🦸🏻‍♂️</li>
-                            <li>When I watch movies in the cinema, I find myself covering my eyes for approximately 90% of the duration due to the suspense and anticipation that keeps me on the edge of my seat. 😱</li>
-                            <li>My wardrobe exclusively consists of black shirts, reflecting my preference for this timeless and versatile color. 🖤</li>
-                        </ul>
-                    </div>
+        .progress-bar {
+            width: 100%;
+            margin: 10px 0;
+        }
 
-<!------- MY TRAITS ------->
-                    <div class="profile-intro">
-                        <h3>My traits</h3>
-                        <hr>
-                        <ul>
-                            <li><b>Creativity:</b> &nbsp I have an innate flair for creativity.</li>
-                            <li><b>Resilience:</b> &nbsp Life taught me to be strong.</li>
-                            <li><b> Communication:</b> &nbsp My ability to connect with people. </li>
-                            <li><b>Teamwork:</b> &nbsp Collaborative team player. </li>
-                            <li><b>Optimistic:</b> &nbsp I have hopeful perspective.</li>
-                        </ul>
-                    </div>
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #e0e0e0;
+            height: 4px;
+            border-radius: 2px;
+        }
 
-<!------- PHOTOS ------->
-                    <div class="profile-intro">
-                        <div class="title-box">
-                            <h3>Photos</h3>
-                            <a href="photos.html">All Photos</a>
-                        </div>
-                        <div class="photo-box">
-                            <div><img src="photo1.png"></div>
-                            <div><img src="photo2.png"></div>
-                            <div><img src="photo3.png"></div>
-                            <div><img src="photo4.png"></div>
-                            <div><img src="photo5.png"></div>
-                            <div><img src="photo6.png"></div>
-                        </div>
-                    </div>
-                    
-<!------- FRIENDS ------->
-                    <div class="profile-intro">
-                        <div class="title-box">
-                            <h3>Friends</h3>
-                            <a href="friends.html">All Friends</a>
-                        </div>
-                        <p>16 (3 mutual)</p>
-                        
-                        <div class="friends-box">
-                            <div><img src="pao.jpg.png"><p>Closeup Pao</p></div>
-                            <div><img src="pao2.png"><p>DBTK Pao</p></div>
-                            <div><img src="pao3.png"><p>Master Azure</p></div>
-                            <div><img src="friend7.jpg"><p>Enrico Velasquez</p></div>
-                            <div><img src="friend6.png"><p>Russel Samson</p></div>
-                            <div><img src="gian.jpg"><p>Gian Cabigting</p></div>
-                        </div>
-                    </div>
-                    
-<!------- SOCIALS ------->
-                    <div class="profile-intro">
-                        <h3>Socials</h3>
-                        <hr>
-                        <ul>
-                            <li><img src="fb.png"><a href="https://www.facebook.com/rafaeIdizon/">Rafael Dizon</a></li>
-                            <li><img src="ig.png"><a href="https://www.instagram.com/ro___0y/">Rafael Dizon</a></li>
-                            <li><img src="gmail.png">kuhaku.blank.rd@gmail.com</li>
-                            <li><img src="gcash.png">09612722088 RA**N D.</li>
-                        </ul>
-                    </div>
-                 </div>
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
 
-<!--------------------------------------------------------------- RIGHT SIDE DIV (POSTS) --------------------------------------------------------------->
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
 
-<!------- WRITE POST ------->
-                <div class="post-col">
-                    <div class="write-post-container">
-                        <div class="user-profile">
-                            <img src="profile.jpg">
-                            <div>
-                                <p>Rafael Roy Dizon</p>
-                                <small>Public</small>
-                            </div>
-                        </div>
+        .audio-controls .play-pause {
+            width: 50px;
+            height: 50px;
+            background-color: transparent; /* Transparent background for play button */
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: none; /* Remove shadow */
+        }
 
-                        <div class="post-input-container">
-                            <textarea rows="3" placeholder="What's on your mind, Rafael?"></textarea>
-                            <div class="add-post-links">
-                                <a href="#"><img src="live-video.png">Live Video</a>
-                                <a href="#"><img src="photo.png">Photo/Video</a>
-                                <a href="#"><img src="feeling.png">Feeling/Activity</a>
-                            </div>
-                        </div>     
-                    </div>
+        .audio-controls .play-pause img {
+            width: 50px; /* Set image width to 50px */
+            height: 50px; /* Set image height to 50px */
+        }
 
-<!------- POST 1 ------->
-<div class="post-container">
-    <div class="post-row">
-        <div class="user-profile">
-            <img src="profile.jpg">
-            <div>
-                <p>Rafael Dizon</p>
-                <span>September 19 2023, 04:27 pm</span>
-            </div>
-        </div>  
+        .audio-controls .time {
+            font-size: 12px;
+            color: #f1f1f1;
+        }
+
+        .time-duration {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="audio-card">
+    <img class="cover" src="cover2.png" alt="Track Cover">
+    
+    <h4>Podcast Title</h4>
+    <p>Group 7</p>
+    <div class="progress-bar">
+        <input type="range" id="seek-bar" value="0" min="0" max="100">
     </div>
-    <p class="post-text">I've done my part on our website. Help me improve our <span>Homepage,</span> comment your suggestions!  💻👨‍💻 <a href="">
-    #Contribution</a></p>
-    <img src="homepage.png" class="post-img">
 
-    <div class="post-row">
-        <div class="activity-icons">
-            <div><img src="like-blue.png">15</div>
-            <div><img src="comments.png">10</div>
-            <div><img src="share.png">1</div>
-        </div>
+    <div class="audio-controls">
+        <div class="time" id="current-time">0:00</div>
+        <button class="play-pause" id="play-pause">
+            <img id="play-icon" src="play.png" alt="Play Icon" />
+            <img id="pause-icon" src="pause.png" alt="Pause Icon" style="display: none;" />
+        </button>
+        <div class="time" id="duration">-0:00</div>
     </div>
-    </a></p>
+
+    <audio id="audio" src="audio.mp4"></audio>
 </div>
 
-<!------- POST 1 ------->
-                    <div class="post-container">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <img src="profile.jpg">
-                                <div>
-                                    <p>Rafael Dizon</p>
-                                    <span>September 11 2021, 04:18 pm</span>
-                                </div>
-                            </div>  
-                        </div>
-                        <p class="post-text">My new fav food, <span>Liempo.</span> I bought this at the PGN canteen. Yummy! 🍔😋 <a href="">
-                        #Food</a></p>
-                        <img src="food2.png" class="post-img">
+<script>
+    const audio = document.getElementById('audio');
+    const playPauseButton = document.getElementById('play-pause');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+    const seekBar = document.getElementById('seek-bar');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const durationDisplay = document.getElementById('duration');
 
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <div><img src="like-blue.png">10</div>
-                                <div><img src="comments.png">2</div>
-                                <div><img src="share.png">1</div>
-                            </div>
-                        </div>
-                        </a></p>
-                    </div>
+    // Play/Pause toggle
+    playPauseButton.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        } else {
+            audio.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        }
+    });
 
-<!------- POST 2 ------->
-                    <div class="post-container">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <img src="profile.jpg">
-                                <div>
-                                    <p>Rafael Dizon</p>
-                                    <span>June 17 2021, 13:40 pm</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="post-text">Reaching <span>Challenger</span> on my favorite game was the journey of a lifetime! 🏆💪 <a href="">
-                        #LeagueOfLegends</a></p>
-                        <img src="feed-image-1.png" class="post-img">
+    // Update seek bar and time
+    audio.addEventListener('timeupdate', function () {
+        const value = (audio.currentTime / audio.duration) * 100;
+        seekBar.value = value || 0;
 
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <div><img src="like-blue.png">15</div>
-                                <div><img src="comments.png">5</div>
-                                <div><img src="share.png">3</div>
-                            </div>
-                        </div>
-                        </a></p>
-                    </div>
+        currentTimeDisplay.textContent = formatTime(audio.currentTime);
+        durationDisplay.textContent = '-' + formatTime(audio.duration - audio.currentTime);
+    });
 
- <!------- POST 3 ------->
-                    <div class="post-container">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <img src="profile.jpg">
-                                <div>
-                                    <p>Rafael Dizon</p>
-                                    <span>September 15 2023, 05:03 pm</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="post-text">Life's too short not to appreciate a good <span>meme</span>. 😂 Double-tap if you're a fellow meme lover! ❤️📚 <a href="">
-                        #ILoveMemes</a></p>
-                        <img src="feed-image-2.png" class="post-img">
+    // Seek functionality
+    seekBar.addEventListener('input', function () {
+        const seekTo = (seekBar.value / 100) * audio.duration;
+        audio.currentTime = seekTo;
+    });
 
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <div><img src="like-blue.png">11</div>
-                                <div><img src="comments.png">16</div>
-                                <div><img src="share.png">10</div>
-                            </div>
-                        </div>
-                        </a></p>
-                    </div>
+    // Format time in minutes:seconds
+    function formatTime(seconds) {
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return min + ':' + (sec < 10 ? '0' + sec : sec);
+    }
 
-<!------- POST 4 ------->                  
-                    <div class="post-container">
-                        <div class="post-row">
-                            <div class="user-profile">
-                                <img src="profile.jpg">
-                                <div>
-                                    <p>Rafael Dizon</p>
-                                    <span>August 20 2023, 01:02 am</span>
-                                </div>
-                            </div>   
-                        </div>
-                        <p class="post-text">Aspiring to shape the future as a <span>Hardware Engineer</span>, one circuit at a time. 🛠️🔌💡<a href="">
-                            #FutureEngineer #HardwareDreams</a></p>
+    // Load duration when metadata is loaded
+    audio.addEventListener('loadedmetadata', function () {
+        durationDisplay.textContent = '-' + formatTime(audio.duration);
+    });
+</script>
 
-                        <div class="post-row">
-                            <div class="activity-icons">
-                                <div><img src="like-blue.png">13</div>
-                                <div><img src="comments.png">3</div>
-                                <div><img src="share.png">1</div>
-                            </div>
-                        </div>
-                        </a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    </body>
+</body>
 </html>
